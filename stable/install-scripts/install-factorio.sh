@@ -5,7 +5,7 @@
 
 mkdir -p "/srv/dockerized-factorio/server"
 
-ftarball=$1
+ftarball=$(cat /tmp/factorio_dl_link.txt)
 ftarget="/srv/dockerized-factorio/server"
 fbinary="${ftarget}/bin/x64/factorio"
 

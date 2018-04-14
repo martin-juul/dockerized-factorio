@@ -39,15 +39,11 @@ ADD --chown=factorio:factorio configs/server-settings.json /tmp/server-settings.
 ADD install-scripts/install-factorio.sh /tmp/install-factorio.sh
 RUN set -xe \
     # the final link to the factorio server
-    && factorio_current_repo=$(echo ${factorio_repo} | sed "s#RELEASE#${factorio_release}#g") \
+    && export factorio_current_repo=$(echo ${factorio_repo} | sed "s#RELEASE#${factorio_release}#g") \
     && cd /tmp \
     && { curl -O -J -L  ${factorio_current_repo}; cd -; } \
     && factorio_archive=$(echo "/tmp/"*.tar.xz) \
-    && chmod +x /tmp/install-factorio.sh \
-    && /tmp/install-factorio.sh "${factorio_archive}" \
-    && rm /tmp/install-factorio.sh \
-    && mv /tmp/server-settings.json /srv/dockerized-factorio/server/server-settings.json \
-    && exec su-exec factorio:factorio /srv/dockerized-factorio/server/bin/x64/factorio --create /srv/dockerized-factorio/server/saves/my-save.zip
+    && echo ${factorio_archive} > /tmp/factorio_dl_link.txt
 
 RUN set -xe \
     && chown -R factorio:factorio /srv/dockerized-factorio \
@@ -56,11 +52,7 @@ RUN set -xe \
 VOLUME /srv/dockerized-factorio
 
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s /usr/local/bin/docker-entrypoint.sh
-#ENTRYPOINT ["docker-entrypoint.sh"]
-
-WORKDIR '/srv/dockerized-factorio/server/bin/x64'
-
-ENTRYPOINT exec su-exec factorio:factorio ./factorio --start-server ../../saves/my-save.zip --server-settings ../../server-settings.json
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+ENTRYPOINT ["docker-entrypoint.sh"]
 # Factorio Server Port
 EXPOSE 34197/udp
