@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+
+name="Factorio"
+command="/srv/dockerized-factorio/"
+command_user="factorio:factorio"
+pidfile="/srv/dockerized-factorio/factorio/server.pid"
+
+extra_commands="checkconfig"
+checkconfig() {
+    echo
+}
+
+depend() {
+    need net
+}

@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  factorio:
+    build:
+      context: ./stable
+    container_name: dockerized-factorio-stable
+    restart: 'no'
+    ports:
+      - '34197:34197'
+    stdin_open: true
+    tty: true
