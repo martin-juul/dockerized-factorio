@@ -7,7 +7,7 @@ run_factorio_server() {
 
 if [ -f /tmp/install-factorio.sh ]; then
     chmod +x /tmp/install-factorio.sh
-    /tmp/install-factorio.sh ${factorio_archive}
+    /tmp/install-factorio.sh
     rm /tmp/install-factorio.sh
     mv /tmp/server-settings.json /srv/dockerized-factorio/server/server-settings.json
     exec su-exec factorio:factorio /srv/dockerized-factorio/server/bin/x64/factorio --create /srv/dockerized-factorio/server/data/saves/dockerized-factorio-world.zip
