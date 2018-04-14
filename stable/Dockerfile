@@ -13,10 +13,6 @@ RUN set -xe \
     && mkdir /srv/dockerized-factorio \
     && chown -R factorio:factorio /srv/dockerized-factorio
 
-ADD --chown=factorio:factorio scripts /srv/dockerized-factorio/scripts/
-RUN set -xe \
-    && chmod +x /srv/dockerized-factorio/scripts/factorio
-
 # container dependencies
 RUN set -xe \
     && apk --update add --no-cache sed tar grep coreutils su-exec curl xz
