@@ -21,10 +21,6 @@ RUN set -xe \
 RUN set -xe \
     && apk --update add --no-cache sed tar grep coreutils su-exec curl xz
 
-# fixing unicode
-#RUN set -xe \
-#    sed -i 's|unicode="NO"|unicode="YES"|g' /etc/rc.conf
-
 # glibc, required by the factorio server
 RUN set -xe \
     && apk --update add --no-cache --virtual fetch-deps ca-certificates wget \
@@ -44,10 +40,6 @@ RUN set -xe \
     && { curl -O -J -L  ${factorio_current_repo}; cd -; } \
     && factorio_archive=$(echo "/tmp/"*.tar.xz) \
     && echo ${factorio_archive} > /tmp/factorio_dl_link.txt
-
-#RUN set -xe \
-#    && chown -R factorio:factorio /srv/dockerized-factorio \
-#    && chmod 777 /srv/dockerized-factorio
 
 VOLUME /srv/dockerized-factorio
 
