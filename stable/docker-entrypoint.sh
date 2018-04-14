@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 run_factorio_server() {
     cd '/srv/dockerized-factorio/server/bin/x64'
     exec su-exec factorio:factorio ./factorio --start-server ../../saves/my-save.zip --server-settings ../../server-settings.json

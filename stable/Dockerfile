@@ -45,9 +45,9 @@ RUN set -xe \
     && factorio_archive=$(echo "/tmp/"*.tar.xz) \
     && echo ${factorio_archive} > /tmp/factorio_dl_link.txt
 
-RUN set -xe \
-    && chown -R factorio:factorio /srv/dockerized-factorio \
-    && chmod 777 /srv/dockerized-factorio
+#RUN set -xe \
+#    && chown -R factorio:factorio /srv/dockerized-factorio \
+#    && chmod 777 /srv/dockerized-factorio
 
 VOLUME /srv/dockerized-factorio
 

@@ -10,3 +10,5 @@ services:
       - '34197:34197'
     stdin_open: true
     tty: true
+    volumes:
+      - ./factorio-data:/srv/dockerized-factorio
