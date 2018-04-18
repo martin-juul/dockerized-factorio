@@ -43,4 +43,4 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 # Factorio Server Port
-EXPOSE 34197/udp
+EXPOSE 34190-34200/udp
