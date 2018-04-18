@@ -2,13 +2,24 @@ version: '2'
 
 services:
   factorio:
-    build:
-      context: ./stable
+    image: dockerized-factorio/factorio:stable
     container_name: dockerized-factorio-stable
     restart: 'no'
     ports:
-      - '34197:34197'
+      - '34197:34197/udp'
     stdin_open: true
     tty: true
     volumes:
       - ./factorio-data:/srv/dockerized-factorio
+  fsm:
+    image: dockerized-factorio/fsm:latest
+    container_name: dockerized-fsm
+    depends_on:
+      - factorio
+    restart: 'no'
+    volumes:
+      - ./factorio-data/server:/srv/fsm/factorio-data
+      - ./factorio-fsm/cert:/srv/fsm/cert
+    ports:
+      - '40080:80'
+      - '40443:443'

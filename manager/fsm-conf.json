@@ -1,0 +1,11 @@
+{
+  "username": "admin",
+  "password": "factorio",
+  "cookie_encryption_key": "topsecretkey",
+  "database_file": "auth.leveldb",
+  "settings_file": "server-settings.json",
+  "log_file": "factorio-server-manager.log",
+  "rcon_pass": "h&kyd7txmedJBXSuU5hS",
+  "rcon_port": 27015,
+  "saves_dir": "/srv/fsm/factorio-data/data/saves"
+}
